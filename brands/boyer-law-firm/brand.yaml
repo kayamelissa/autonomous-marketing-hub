@@ -1,0 +1,118 @@
+# Boyer Law Firm, P.L. — Türkçe site: floridaturkavukat.com
+# Only env-var NAMES go in this file. Never paste a key or webhook URL here.
+
+name: Boyer Hukuk Bürosu
+aliases: [Boyer Law Firm, Boyer Law Firm P.L., Boyer Hukuk, Boyer Law, Francis Boyer, Francis M. Boyer, floridaturkavukat]
+description: >
+  Boyer Law Firm, P.L. (Boyer Hukuk Bürosu): 2008'den beri Jacksonville merkezli, Florida
+  (Jacksonville, Miami, Orlando/Altamonte Springs, Tampa, Boca Raton), New York ve Mobile AL
+  ofisleriyle Türkçe iletişim desteği veren ABD hukuk bürosu. Alanlar: göçmenlik (aile, EB-1/2/3,
+  L-1, H-1B, TN, E-1, E-2, EB-5, vatandaşlık), uluslararası hukuk (uluslararası boşanma ve velayet,
+  Lahey çocuk kaçırma, yabancı mahkeme kararının tanınması), Florida aile hukuku, ticari davalar,
+  şirketler hukuku, miras ve tereke. Kurucu avukat Francis M. Boyer, Florida Barosu tarafından
+  Uluslararası Hukukta Board Certified'dır. İstanbul'daki nokta bir müvekkil destek ofisidir, hukuk
+  ofisi değildir; büro Türk hukuku kapsamında hizmet vermez.
+domain: floridaturkavukat.com
+city: Jacksonville
+places_query: Boyer Law Firm P.L. Jacksonville
+language: tr
+country: US
+timezone: Europe/Istanbul   # the marketing team's morning
+voice: >
+  Sakin, anlaşılır, güven veren Türkçe. Hukuki terimi önce sade dille açıkla. Süreci adım adım
+  anlat, abartma. "Siz" dili. Kısa paragraflar.
+offers:
+  - E-2 yatırımcı vizesi ve Florida'da şirket kuruluşu
+  - Green Card (aile, evlilik, EB-1/EB-2/EB-3) ve vatandaşlık
+  - Uluslararası boşanma, velayet, Lahey çocuk kaçırma
+  - Türkiye mahkeme kararlarının Florida/New York'ta tanınması
+  - Florida ticari davaları, sözleşme ve ortaklık uyuşmazlıkları
+  - Miras, vasiyet, tereke (probate) ve uluslararası miras planlaması
+
+compliance:
+  - Florida Barosu reklam kuralları (Rule 4-7) geçerli. Sonuç vaadi ya da garanti yok ("kazanırız", "kesin onay", "48 saatte green card" gibi).
+  - '"Uzman" / "specialist" / "expert" kelimesini kullanma. İstisna: Francis M. Boyer için "Florida Barosu tarafından Uluslararası Hukukta Board Certified" ifadesi.'
+  - Geçmiş sonuç ya da müvekkil yorumu kullanılırsa doğrulanabilir olmalı ve "geçmiş sonuçlar gelecekteki sonuçları garanti etmez" notu eklenmeli.
+  - Her reklam, sosyal medya ve açılış sayfası taslağına "Avukat Reklamı / Attorney Advertising" ibaresi eklenmeli.
+  - Kişiye özel hukuki tavsiye gibi okunabilecek içerik yazma; danışma görüşmesine davet et.
+  - İstanbul noktasını hukuk ofisi gibi sunma; Türk hukuku hizmeti ima etme.
+  - Rakip büroların adını reklam metninde kullanma.
+
+competitors:
+  - name: Gozel Law Firm
+    aliases: [Gözel Law, Arif Gözel, Arif Gozel]
+    url: https://www.gozellaw.com/tr/amerika-turk-avukat
+  - name: Alaz Law
+    aliases: [Hasan Alaz]
+    url: https://www.alazlaw.com/turkish-immigration-lawyer-usa/
+  - name: Yellow Law Group
+    aliases: [yellow.law, Sinan Sarı]
+    url: https://yellow.law/tr/blog/amerikada-turk-avukat
+  - name: Yildiz Law Firm
+    aliases: [Yıldız Law, Seda Yıldız]
+  - name: Cem Tahir P.A.
+    aliases: [Cem Tahir]
+  - name: Ozek Law Firm
+    aliases: [Ozek Law, Özek]
+  - name: Barlas Law Firm
+    aliases: [Barlas Law]
+    url: https://www.barlaslawfirm.com/
+  - name: Law Offices of Sema Yildirim
+    aliases: [Sema Yıldırım, Sema Yildirim]
+  - name: Grape Law Firm
+    aliases: [Muhammed Üzüm]
+  - name: MC Law Firm
+    aliases: [Mustafa Çetin, Mustafa Cetin]
+
+# Used in the briefing's review action (Florida Bar: ask, never pay or incentivise reviews)
+review_ask: Dosyası tamamlanan müvekkillere teşekkür e-postasıyla Google yorum bağlantısını gönder; yorum karşılığında hiçbir şey teklif etme
+
+notify:
+  slack_webhook_env: SLACK_WEBHOOK_URL_BOYER
+  email_to_env: BRIEFING_EMAIL_TO_BOYER
+
+modules:
+  seo-hunter:
+    manual_minutes: 25
+    gsc_credentials_env: GSC_SERVICE_ACCOUNT_JSON_BOYER
+    gsc_property: https://floridaturkavukat.com/
+    # Turkish speakers in Türkiye (planning a move) and in the US (already there)
+    markets: [[tr, TR], [tr, US]]
+    seed_keywords:
+      - florida türk avukat
+      - amerika türk avukat
+      - e2 vizesi
+      - green card avukatı
+      - amerikada şirket kurmak
+      - amerikada boşanma
+      - florida boşanma avukatı
+      - eb5 vizesi
+      - amerika vatandaşlık başvurusu
+      - türkiye mahkeme kararı amerika tanıma
+    modifiers: ["", " nasıl", " ücreti", " şartları", " ne kadar sürer"]
+    topic_words: [vize, green card, amerika, abd, göçmen, avukat, uscis, boşanma, velayet, miras, şirket]
+    quick_win_positions: [4, 20]
+    quick_win_min_impressions: 20
+  viral-radar:
+    manual_minutes: 20
+    window_hours: 48
+    topics: [amerikada yaşam, e2 vizesi, green card, amerikaya göç, amerikada şirket kurmak]
+    hashtags: [amerikadayasam, greencard, e2vizesi, amerikadaturkler]
+    tiktok_via_apify: false
+    instagram_via_apify: false
+  ai-visibility-geo:
+    manual_minutes: 30
+    engines: [openai, gemini, perplexity, claude]
+    prompts:
+      - Florida'da Türk avukat önerir misin?
+      - Amerika'da Türk göçmenlik avukatı
+      - Florida E-2 yatırımcı vizesi için Türkçe konuşan avukat
+      - Florida'da Türkçe konuşan boşanma avukatı
+      - Amerika'da Türk avukat
+      - Green Card başvurusu için Türkçe hizmet veren avukat
+      - Türkiye'deki boşanma kararını Florida'da tanıtmak için avukat
+      - Turkish speaking lawyer in Florida
+  competitor-spy:
+    manual_minutes: 25
+  content-repurposer:
+    manual_minutes: 20
