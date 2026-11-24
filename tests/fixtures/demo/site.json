@@ -1,0 +1,32 @@
+[
+ {
+  "url": "https://floridaturkavukat.com/",
+  "status": 200,
+  "title": "Florida ve New York’ta Türkçe Hukuk Hizmetleri | Boyer Hukuk Bürosu",
+  "description": "Florida ve New York’ta göçmenlik, şirketler hukuku, ticari uyuşmazlıklar, aile hukuku ve miras konularında Türkçe iletişim desteği.",
+  "h1_count": 1,
+  "schema_types": [
+   "Attorney",
+   "Organization",
+   "WebSite"
+  ]
+ },
+ {
+  "url": "https://floridaturkavukat.com/avukatlik-alanlari/amerika-gocmenlik-avukati/yatirim-vizesi/e-2-yatirimci-vize/",
+  "status": 200,
+  "title": "E-2 Yatırımcı Vizesi | Boyer Hukuk Bürosu",
+  "description": "E-2 vizesi.",
+  "h1_count": 1,
+  "schema_types": [
+   "WebPage"
+  ]
+ },
+ {
+  "url": "https://floridaturkavukat.com/uluslararasi-bosanma-avukati-boyer-hukuk-burosu/",
+  "status": 200,
+  "title": "Uluslararası Boşanma Avukatı | Boyer Hukuk Bürosu",
+  "description": "Uluslararası boşanma davalarında Florida ve New York'ta Türkçe iletişim desteğiyle hukuki temsil.",
+  "h1_count": 1,
+  "schema_types": []
+ }
+]
