@@ -1,0 +1,50 @@
+[
+ {
+  "platform": "youtube_shorts",
+  "account": "Demo Göç Kanalı",
+  "followers": 5000,
+  "views": 210000,
+  "views_per_hour": 8000,
+  "likes": 9000,
+  "comments": 800,
+  "hook": "Green Card mülakatında bu soruyu sakın böyle cevaplamayın",
+  "hashtags": [
+   "greencard"
+  ],
+  "sound": null,
+  "url": "https://www.youtube.com/shorts/demo1",
+  "published_at": "2026-11-23T09:00:00Z"
+ },
+ {
+  "platform": "youtube_shorts",
+  "account": "Demo Amerika Vlog",
+  "followers": 300000,
+  "views": 90000,
+  "views_per_hour": 3000,
+  "likes": 4000,
+  "comments": 120,
+  "hook": "Amerika'da bir günüm: Florida'da market fiyatları",
+  "hashtags": [
+   "amerikadayasam"
+  ],
+  "sound": null,
+  "url": "https://www.youtube.com/shorts/demo2",
+  "published_at": "2026-11-23T10:00:00Z"
+ },
+ {
+  "platform": "youtube_shorts",
+  "account": "Demo Immigration Explained",
+  "followers": 20000,
+  "views": 160000,
+  "views_per_hour": 6000,
+  "likes": 7000,
+  "comments": 300,
+  "hook": "3 mistakes that get E-2 visas denied",
+  "hashtags": [
+   "e2visa"
+  ],
+  "sound": null,
+  "url": "https://www.youtube.com/shorts/demo3",
+  "published_at": "2026-11-23T12:00:00Z"
+ }
+]
