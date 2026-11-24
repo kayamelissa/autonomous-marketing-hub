@@ -1,0 +1,44 @@
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*service-account*.json
+*credentials*.json
+client_secret*.json
+token.json
+
+# Run output (may contain search, review and competitor data — never commit)
+data/
+reports/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+
+# Playwright / browsers
+playwright-report/
+test-results/
+*.png
+!docs/**/*.png
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.claude/settings.local.json
+
+# Fetched by scripts/setup_skills.sh (pinned upstream, MIT)
+third_party/
+.claude/skills/
