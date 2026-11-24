@@ -1,0 +1,23 @@
+[
+ {
+  "name": "Boyer Hukuk Bürosu",
+  "is_us": true,
+  "rating": 4.8,
+  "reviews": 40,
+  "maps": null
+ },
+ {
+  "name": "Cem Tahir P.A.",
+  "is_us": false,
+  "rating": 5.0,
+  "reviews": 120,
+  "maps": null
+ },
+ {
+  "name": "Gozel Law Firm",
+  "is_us": false,
+  "rating": 4.9,
+  "reviews": 300,
+  "maps": null
+ }
+]
