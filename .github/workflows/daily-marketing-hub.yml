@@ -1,0 +1,133 @@
+name: Daily Marketing Hub
+
+# Boyer Law Firm: weekdays 05:07 UTC = 08:07 Istanbul (team) / 00:07 New York.
+# The briefing is in Slack and e-mail before the team's 08:30 stand-up.
+# Minutes are offset from :00 because GitHub delays jobs scheduled on the hour.
+# Adding a brand: add brands/<slug>/brand.yaml, a cron line, and a case below.
+on:
+  schedule:
+    - cron: "7 5 * * 1-5"   # boyer-law-firm
+  workflow_dispatch:
+    inputs:
+      brand:
+        description: "Brand slug (boyer-law-firm, or all)"
+        required: true
+        default: boyer-law-firm
+      send:
+        description: "Post to Slack / e-mail"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: marketing-hub-${{ github.event.schedule || inputs.brand }}
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      brands: ${{ steps.pick.outputs.brands }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: pick
+        env:
+          SCHEDULE: ${{ github.event.schedule }}
+          BRAND_INPUT: ${{ inputs.brand }}
+        run: |
+          all=$(ls brands | while read b; do [ -f "brands/$b/brand.yaml" ] && printf '"%s",' "$b"; done)
+          all="[${all%,}]"
+          case "$SCHEDULE" in
+            "7 5 * * 1-5") echo 'brands=["boyer-law-firm"]' >> "$GITHUB_OUTPUT" ;;
+            *)
+              if [ "$BRAND_INPUT" = "all" ]; then
+                echo "brands=$all" >> "$GITHUB_OUTPUT"
+              elif [ -f "brands/$BRAND_INPUT/brand.yaml" ] && [[ "$BRAND_INPUT" =~ ^[a-z0-9-]+$ ]]; then
+                echo "brands=[\"$BRAND_INPUT\"]" >> "$GITHUB_OUTPUT"
+              else
+                echo "Unknown brand: $BRAND_INPUT" >&2; exit 1
+              fi ;;
+          esac
+
+  run:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        brand: ${{ fromJSON(needs.plan.outputs.brands) }}
+    env:
+      # LLM + data providers
+      LLM_PROVIDER: ${{ vars.LLM_PROVIDER }}
+      LLM_MODEL: ${{ vars.LLM_MODEL }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
+      YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+      GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+      META_AD_LIBRARY_TOKEN: ${{ secrets.META_AD_LIBRARY_TOKEN }}
+      APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+      APIFY_TIKTOK_ACTOR: ${{ vars.APIFY_TIKTOK_ACTOR }}
+      APIFY_INSTAGRAM_ACTOR: ${{ vars.APIFY_INSTAGRAM_ACTOR }}
+      SMTP_HOST: ${{ secrets.SMTP_HOST }}
+      SMTP_PORT: ${{ vars.SMTP_PORT }}
+      SMTP_USER: ${{ secrets.SMTP_USER }}
+      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+      SMTP_FROM: ${{ vars.SMTP_FROM }}
+      # Per-brand secrets (each brand.yaml names the ones it reads)
+      GSC_SERVICE_ACCOUNT_JSON_BOYER: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON_BOYER }}
+      SLACK_WEBHOOK_URL_BOYER: ${{ secrets.SLACK_WEBHOOK_URL_BOYER }}
+      BRIEFING_EMAIL_TO_BOYER: ${{ secrets.BRIEFING_EMAIL_TO_BOYER }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+      - run: bash scripts/setup_skills.sh
+
+      # Yesterday's outputs + competitor snapshots live in the Actions cache,
+      # never in the (public) repository.
+      - name: Restore history
+        uses: actions/cache/restore@v4
+        with:
+          path: data/${{ matrix.brand }}
+          key: hub-${{ matrix.brand }}-${{ github.run_id }}
+          restore-keys: hub-${{ matrix.brand }}-
+
+      - name: Run pipeline
+        env:
+          NO_SEND: ${{ (github.event_name == 'workflow_dispatch' && !inputs.send) && '--no-send' || '' }}
+        run: |
+          python -m hub.run_all --brand "${{ matrix.brand }}" $NO_SEND \
+            --report-url "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+      - name: Prune history older than 30 days
+        run: find "data/${{ matrix.brand }}" -maxdepth 1 -type d -name '20*' -mtime +30 -exec rm -rf {} + || true
+
+      - name: Save history
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/${{ matrix.brand }}
+          key: hub-${{ matrix.brand }}-${{ github.run_id }}
+
+      - name: Briefing to job summary
+        if: always()
+        run: cat reports/${{ matrix.brand }}/*.md >> "$GITHUB_STEP_SUMMARY" || true
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: briefing-${{ matrix.brand }}-${{ github.run_id }}
+          path: |
+            reports/${{ matrix.brand }}
+            data/${{ matrix.brand }}/20*
+          retention-days: 30
