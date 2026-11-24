@@ -1,0 +1,7 @@
+requests>=2.31
+PyYAML>=6.0
+python-dotenv>=1.0
+google-auth>=2.28      # Search Console service account
+markdown>=3.5          # HTML e-mail body
+# Optional: render JavaScript-heavy competitor pages (render: true in brand.yaml)
+# playwright>=1.44
