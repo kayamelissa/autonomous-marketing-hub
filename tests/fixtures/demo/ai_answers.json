@@ -1,0 +1,33 @@
+{
+ "openai": {
+  "Florida'da Türk avukat önerir misin?": {
+   "answer": "Seçenekler: Cem Tahir P.A., Ozek Law Firm, Barlas Law Firm ve Boyer Hukuk Bürosu.",
+   "citations": [
+    "https://floridaturkavukat.com/",
+    "https://www.avvo.com/x"
+   ]
+  },
+  "Amerika'da Türk göçmenlik avukatı": {
+   "answer": "Gozel Law Firm, Yildiz Law Firm ve Alaz Law öne çıkıyor.",
+   "citations": [
+    "https://www.gozellaw.com/tr/",
+    "https://www.alazlaw.com/"
+   ]
+  }
+ },
+ "perplexity": {
+  "Florida'da Türk avukat önerir misin?": {
+   "answer": "Boyer Law Firm Florida'da beş ofisle Türkçe destek veriyor; Sema Yildirim aile hukukunda çalışıyor.",
+   "citations": [
+    "https://floridaturkavukat.com/",
+    "https://www.floridabar.org/"
+   ]
+  },
+  "Amerika'da Türk göçmenlik avukatı": {
+   "answer": "Alaz Law tüm ABD'de uzaktan çalışıyor.",
+   "citations": [
+    "https://www.alazlaw.com/"
+   ]
+  }
+ }
+}
