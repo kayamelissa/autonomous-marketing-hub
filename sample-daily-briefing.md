@@ -47,7 +47,7 @@ User-agent: *
 Allow: /
 Sitemap: https://floridaturkavukat.com/sitemap_index.xml
 ```
-Site haritasının gerçek adresini (`/sitemap_index.xml` ya da `/sitemap.xml`) eklemeden önce kontrol et. `llms.txt` var (7 KB). İlk paragrafına "Türkçe iletişim desteği" ve 7 ofis bilgisini ekle.
+Site haritası adresi 25 Kasım'da doğrulandı: `/sitemap_index.xml` çalışıyor, `/wp-sitemap.xml` de buraya yönleniyor. `llms.txt` var (7 KB). İlk paragrafına "Türkçe iletişim desteği" ve 7 ofis bilgisini ekle.
 
 ## 🎨 Sadece senin kararın
 - **Konumlanma:** Ülke genelindeki Türk göçmenlik pazarında AI'ların önerdiği firmalar uzaktan çalışan göçmenlik büroları. (a) Ülke geneline uzaktan göçmenlik vurgusuyla girelim (b) Florida + uluslararası aile/miras nişinde derinleşelim (c) ikisi, ayrı sayfalarla
@@ -74,8 +74,10 @@ Site haritasının gerçek adresini (`/sitemap_index.xml` ya da `/sitemap.xml`) 
 | H1 | ✅ 1 adet |
 | Schema | ✅ Attorney, Organization, WebSite · ⚠️ ana sayfada FAQPage yok |
 | `llms.txt` | ✅ var (7 KB) |
-| `robots.txt` | ⚠️ boş, site haritası satırı yok |
+| `robots.txt` | ⚠️ boş (0 bayt, 25 Kasım'da doğrulandı), site haritası satırı yok |
 | "Avukat Reklamları" bağlantısı | ❌ `#` adresine gidiyor |
+| Reklam kuralına aykırı ifade ("uzman", "en iyi", sonuç vaadi) | ❌ en az 7 sayfada (25 Kasım denetimi) |
+| Türkçe dil hataları | ❌ menüde 20'den fazla hatalı terim; ayrıntı: iç rapor (25 Kasım) |
 | Blog | ✅ aktif (son yazılar: 16, 18 ve 23 Kasım) |
 
 **Viral kısa videolar** *(temsilî örnek)*
