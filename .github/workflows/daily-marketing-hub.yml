@@ -1,12 +1,12 @@
 name: Daily Marketing Hub
 
-# Boyer Law Firm: weekdays 05:07 UTC = 08:07 Istanbul (team) / 00:07 New York.
-# The briefing is in Slack and e-mail before the team's 08:30 stand-up.
+# Boyer Law Firm: weekdays 05:45 UTC = 08:45 Istanbul (Turkey has no DST).
+# The briefing reaches Slack and e-mail around 09:00 Istanbul.
 # Minutes are offset from :00 because GitHub delays jobs scheduled on the hour.
 # Adding a brand: add brands/<slug>/brand.yaml, a cron line, and a case below.
 on:
   schedule:
-    - cron: "7 5 * * 1-5"   # boyer-law-firm
+    - cron: "45 5 * * 1-5"  # boyer-law-firm
   workflow_dispatch:
     inputs:
       brand:
@@ -40,7 +40,7 @@ jobs:
           all=$(ls brands | while read b; do [ -f "brands/$b/brand.yaml" ] && printf '"%s",' "$b"; done)
           all="[${all%,}]"
           case "$SCHEDULE" in
-            "7 5 * * 1-5") echo 'brands=["boyer-law-firm"]' >> "$GITHUB_OUTPUT" ;;
+            "45 5 * * 1-5") echo 'brands=["boyer-law-firm"]' >> "$GITHUB_OUTPUT" ;;
             *)
               if [ "$BRAND_INPUT" = "all" ]; then
                 echo "brands=$all" >> "$GITHUB_OUTPUT"
